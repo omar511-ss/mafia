@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HQ | فريق الألعاب العربي الشغوف</title>
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --primary-dark: #5f1a9b;
+            --primary-light: #b57edc;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #f0f0f0;
+            --gray: #2a2a2a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* التصميم العصري للشريط العلوي */
+        header {
+            background: linear-gradient(135deg, var(--dark), var(--darker));
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-bottom: 1px solid var(--primary);
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -1px;
+        }
+        
+        /* قائمة التنقل */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary-light);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* القسم الرئيسي */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(138,43,226,0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, #fff, var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* أقسام الموقع */
+        section {
+            padding: 6rem 10%;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), transparent);
+            border-radius: 3px;
+        }
+        
+        /* بطاقات الألعاب */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .game-card {
+            background: var(--gray);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 1px solid var(--primary-dark);
+            position: relative;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(138,43,226,0.2);
+        }
+        
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .game-info {
+            padding: 1.5rem;
+        }
+        
+        .game-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-light);
+        }
+        
+        /* قسم الفريق */
+        .team-section {
+            background: var(--dark);
+            position: relative;
+        }
+        
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%238a2be2" opacity="0.03" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .team-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .team-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        /* قسم التواصل */
+        .contact-section {
+            background: linear-gradient(to bottom, var(--darker), var(--dark));
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .contact-card {
+            background: var(--gray);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            transition: transform 0.3s;
+            border: 1px solid var(--primary-dark);
+        }
+        
+        .contact-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* التذييل */
+        footer {
+            background: var(--dark);
+            padding: 3rem 10%;
+            text-align: center;
+            border-top: 1px solid var(--primary-dark);
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* تأثيرات الحركة */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                gap: 1rem;
+            }
+            
+            .hero {
+                padding: 0 5%;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 4rem 5%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <header>
+        <div class="logo">HQ</div>
+        <nav>
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#games">الألعاب</a></li>
+                <li><a href="#team">الفريق</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>فريق <span class="floating">HQ</span> للألعاب</h1>
+            <p>مجموعة من الشباب العربي الشغوف بتطوير الألعاب والتقنية. نبدأ صغار ونكبر معاً، من غير تعقيد ولا ضغوط.</p>
+            <p>إذا كنت تحب الألعاب والتطوير، فأنت في المكان الصحيح!</p>
+        </div>
+    </section>
+
+    <!-- قسم الألعاب -->
+    <section id="games" class="games-section">
+        <h2 class="section-title">ألعابنا</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">هذه بعض المشاريع التي عملنا عليها، كلها بدأت أفكار بسيطة وتحولت إلى تجارب ممتعة</p>
+        
+        <div class="games-grid">
+            <div class="game-card">
+                <img src="https://via.placeholder.com/600x400/8a2be2/ffffff?text=Game+1" alt="لعبة المغامرة">
+                <div class="game-info">
+                    <h3>المملكة المفقودة</h3>
+                    <p>لعبة مغامرات بسيطة بنيناها في أسبوع واحد خلال تحدي التطوير</p>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <img src="https://via.placeholder.com/600x400/5f1a9b/ffffff?text=Game+2" alt="لعبة الألغاز">
+                <div class="game-info">
+                    <h3>تحدي الألغاز</h3>
+                    <p>لعبة ألغاز تعليمية من تطوير أحد أعضاء الفريق الجدد</p>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <img src="https://via.placeholder.com/600x400/b57edc/ffffff?text=Game+3" alt="لعبة السباقات">
+                <div class="game-info">
+                    <h3>سرعة بسيطة</h3>
+                    <p>لعبة سباقات ثنائية الأبعاد، أول مشروع جماعي للفريق</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الفريق -->
+    <section id="team" class="team-section">
+        <h2 class="section-title">فريقنا</h2>
+        
+        <div class="team-content">
+            <p>فريق <strong>HQ</strong> هو مبادرة عربية بدأت بمجموعة أصدقاء يجمعهم حب الألعاب والتطوير. قررنا نعمل حاجة بسيطة من القلب، من غير ضغوط مالية أو جدول زمني صارم.</p>
+            
+            <p>إحنا مش شركة كبيرة ولا عندنا مكاتب فخمة. إحنا مجموعة شباب بتتعلم وتتجمع على Discord وعملنا موقع وشاركنا أفكارنا وخبراتنا. كل عضو في الفريق حر يعمل اللي بيميل له ويطور مهاراته.</p>
+            
+            <p>الشروط الوحيدة للانضمام: <strong>حب التعلم</strong>، <strong>الالتزام الأخلاقي</strong>، و<strong>الرغبة في المشاركة</strong>. مش مهم مستوى خبرتك، المهم الشغف والاستعداد للتطور.</p>
+            
+            <p>هدفنا مش الربح المادي، لكن بناء <strong>مجتمع تقني عربي</strong> يتبادل المعرفة وينتج محتوى ممتع ومفيد.</p>
+        </div>
+    </section>
+
+    <!-- قسم التواصل -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">تواصل معنا</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">إذا أعجبك الفكر وتريد تشاركنا أو حتى بس تسأل، تواصل معنا من أي طريقة</p>
+        
+        <div class="contact-methods">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-discord"></i>
+                </div>
+                <h3>Discord</h3>
+                <p>انضم للسيرفر وتعرّف على الفريق</p>
+                <p style="margin-top: 10px; color: var(--primary-light);">HQ_Community#1234</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-twitter"></i>
+                </div>
+                <h3>تويتر</h3>
+                <p>تابعنا لأخر أخبار الفريق</p>
+                <p style="margin-top: 10px; color: var(--primary-light);">@HQ_Games</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>البريد</h3>
+                <p>أرسل لنا رسالة مباشرة</p>
+                <p style="margin-top: 10px; color: var(--primary-light);">team@hq-games.xyz</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="footer-logo">HQ</div>
+        <p>مجتمع عربي لتطوير الألعاب والتقنية</p>
+        
+        <div class="social-links">
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <p class="copyright">© 2023 فريق HQ. كل الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        // تأثيرات بسيطة بدون الحاجة لسيرفر
+        document.addEventListener('DOMContentLoaded', function() {
+            // تأثير ظهور العناصر عند التمرير
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // تغيير لون الشريط العلوي عند التمرير
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.background = 'var(--darker)';
+                    header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.5)';
+                } else {
+                    header.style.background = 'linear-gradient(135deg, var(--dark), var(--darker))';
+                    header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
